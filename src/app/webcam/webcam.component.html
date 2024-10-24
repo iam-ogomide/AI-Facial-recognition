@@ -1,0 +1,15 @@
+<div>
+    <video #video width="720" height="560" autoplay></video>
+    <canvas #canvas width="720" height="560"></canvas>
+    <div *ngIf="detectedFaces.length">
+      <h2>Detected Faces:</h2>
+      <ul>
+        <li *ngFor="let face of detectedFaces">
+          <p>Age: {{ face.age }} - Gender: {{ face.gender }}</p>
+        </li>
+      </ul>
+    </div>
+    <button (click)="captureImage()">Capture Image</button>
+    <button (click)="stopWebcam()" *ngIf="isWebcamActive">Stop Webcam</button>
+  </div>
+  

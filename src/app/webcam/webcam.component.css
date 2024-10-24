@@ -1,0 +1,14 @@
+video {
+    width: 100%;
+    max-width: 640px;
+    height: auto;
+  }
+  
+  .face-box {
+    position: absolute;
+    border: 2px solid red;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 5px;
+  }
+  
