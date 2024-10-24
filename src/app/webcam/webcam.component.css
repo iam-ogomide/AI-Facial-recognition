@@ -5,7 +5,7 @@ video {
   }
   
   canvas {
-    display: none; /* Hide the canvas, we use it for capturing only */
+    display: none; 
   }
   
   .face-info {

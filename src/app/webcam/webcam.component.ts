@@ -2,13 +2,12 @@ import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 import * as faceapi from 'face-api.js';
 
 interface DetectedFace {
-  box: any; // Define a more specific type if possible
+  box: any; 
   age: number;
   gender: string;
-  name?: string; // Optional name property
+  expressions: faceapi.FaceExpressions; 
+  name?: string; 
 }
-
-
 
 @Component({
   selector: 'app-webcam',
@@ -28,14 +27,14 @@ export class WebcamComponent implements OnInit {
 
   // Load face-api.js models
   async loadFaceApiModels() {
-    const MODEL_URL = 'assets/models'; // Adjust the path as needed
+    const MODEL_URL = 'assets/models'; 
 
     await Promise.all([
       faceapi.nets.tinyFaceDetector.loadFromUri(MODEL_URL),
       faceapi.nets.faceLandmark68Net.loadFromUri(MODEL_URL),
       faceapi.nets.faceRecognitionNet.loadFromUri(MODEL_URL),
       faceapi.nets.ageGenderNet.loadFromUri(MODEL_URL),
-      await faceapi.nets.faceExpressionNet.loadFromUri(MODEL_URL),
+      faceapi.nets.faceExpressionNet.loadFromUri(MODEL_URL),
     ]);
   }
 
@@ -70,8 +69,13 @@ export class WebcamComponent implements OnInit {
       age: detection.age,
       gender: detection.gender,
       expressions: detection.expressions,
-      name: "Trial Name" // Default name or integrate a name detection mechanism if available
+      name: "Trial Name" 
     }));
+  }
+
+  // Check if a value is a number
+  isNumber(value: any): value is number {
+    return typeof value === 'number';
   }
 
   // Stop the webcam stream

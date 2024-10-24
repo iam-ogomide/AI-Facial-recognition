@@ -1,14 +1,29 @@
-<div>
-    <video #video autoplay></video>
-    <canvas #canvas width="640" height="480" style="display: none;"></canvas>
-    
-    <button (click)="captureImage()">Capture Image</button>
-    <button (click)="stopWebcam()">Stop Webcam</button>
-  
-    <div *ngFor="let face of detectedFaces" [ngStyle]="{'position': 'absolute', 'border': '2px solid red', 'top.px': face.box.y, 'left.px': face.box.x, 'width.px': face.box.width, 'height.px': face.box.height}">
-      <p>Name: {{ face.name }}</p>
-      <p>Age: {{ face.age }}</p>
-      <p>Gender: {{ face.gender }}</p>
+<div class="container mt-4">
+    <h2 class="text-center">Face Detection Results</h2>
+    <div class="row">
+      <div class="col-md-6">
+        <video #video autoplay playsinline></video>
+        <canvas #canvas style="display:none;"></canvas>
+        <button (click)="captureImage()" class="btn btn-primary mt-2">Capture Image</button>
+        <button (click)="stopWebcam()" class="btn btn-primary mt-2 mx-2">Stop Webcam</button>
+      </div>
+      <div class="col-md-6">
+        <!-- <h3>Detected Faces</h3> -->
+        <div *ngFor="let face of detectedFaces" class="card mb-3">
+          <div class="card-body">
+            <h5 class="card-title">Face Details</h5>
+            <p><strong>Name:</strong> {{ face.name }}</p>
+            <p><strong>Age:</strong> {{ face.age }}</p>
+            <p><strong>Gender:</strong> {{ face.gender }}</p>
+            <h6>Emotions:</h6>
+            <ul>
+                <li *ngFor="let emotion of face.expressions | keyvalue">
+                    {{ emotion.key }}: {{ (isNumber(emotion.value) ? emotion.value : 0) | number:'1.0-2' }}
+                  </li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   
