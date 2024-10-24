@@ -1,15 +1,14 @@
 <div>
-    <video #video width="720" height="560" autoplay></video>
-    <canvas #canvas width="720" height="560"></canvas>
-    <div *ngIf="detectedFaces.length">
-      <h2>Detected Faces:</h2>
-      <ul>
-        <li *ngFor="let face of detectedFaces">
-          <p>Age: {{ face.age }} - Gender: {{ face.gender }}</p>
-        </li>
-      </ul>
-    </div>
+    <video #video autoplay></video>
+    <canvas #canvas width="640" height="480" style="display: none;"></canvas>
+    
     <button (click)="captureImage()">Capture Image</button>
-    <button (click)="stopWebcam()" *ngIf="isWebcamActive">Stop Webcam</button>
+    <button (click)="stopWebcam()">Stop Webcam</button>
+  
+    <div *ngFor="let face of detectedFaces" [ngStyle]="{'position': 'absolute', 'border': '2px solid red', 'top.px': face.box.y, 'left.px': face.box.x, 'width.px': face.box.width, 'height.px': face.box.height}">
+      <p>Name: {{ face.name }}</p>
+      <p>Age: {{ face.age }}</p>
+      <p>Gender: {{ face.gender }}</p>
+    </div>
   </div>
   

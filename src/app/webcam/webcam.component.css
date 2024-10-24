@@ -1,14 +1,21 @@
 video {
-    width: 100%;
-    max-width: 640px;
-    height: auto;
+    width: 640px;
+    height: 480px;
+    border: 1px solid black;
   }
   
+  canvas {
+    display: none; /* Hide the canvas, we use it for capturing only */
+  }
+  
+  .face-info {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.8);
+    border-radius: 5px;
+    padding: 10px;
+    max-width: 150px;
+  }
   .face-box {
     position: absolute;
-    border: 2px solid red;
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    padding: 5px;
   }
   
