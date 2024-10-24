@@ -31,15 +31,20 @@
             ],
             "scripts": [
               "node_modules/face-api.js/dist/face-api.min.js"
+            ],
+            "allowedCommonJsDependencies": [
+              "face-api.js",
+              "@tensorflow/tfjs-core"
             ]
+            
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumWarning": "2mb",
+                  "maximumError": "3mb"
                 },
                 {
                   "type": "anyComponentStyle",
